@@ -1,7 +1,7 @@
 <template lang="jade">
 div
   summary(:summary="summary")
-  content.clearfix
+  content.clearfix(:prefix="prefix", :v="summary.v")
 </template>
 
 <script lang="coffee">
@@ -17,10 +17,10 @@ exports.components =
 
 exports.data = ->
   summary: {}
+  prefix: 'book/'
 
 exports.ready = ->
-  http('book/SUMMARY.json?' + Date.now().toString(36)).get((summary) =>
-    utils.extend(window, summary)
+  http("#{@prefix}SUMMARY.json?#{utils.timehash()}").get((summary) =>
     document.title = summary.title
     @summary = summary
   )

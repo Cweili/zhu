@@ -1,6 +1,6 @@
-![zhu](http://git.oschina.net/Cweili/zhu/raw/master/zhu.png)
-
 # Zhu
+
+![zhu](http://git.oschina.net/Cweili/zhu/raw/master/zhu.png)
 
 Release your Gitbook to HTMLs.
 
@@ -11,6 +11,10 @@ Release your Gitbook to HTMLs.
 ```
 npm install -g zhu
 ```
+
+## Useage
+
+### Build your Gitbook
 
 ```
 zhu build

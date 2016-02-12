@@ -32,7 +32,17 @@ gulp.task('html', ['del'], ->
       /<script src="(\S+?)"><\/script>/
       """<script src="$1?#{config.pkg.version}"><\/script>"""
     ))
-    .pipe($.htmlmin())
+    .pipe($.htmlmin(
+      collapseWhitespace: true
+      removeAttributeQuotes: true
+      removeComments: true
+      removeCommentsFromCDATA: true
+      removeScriptTypeAttributes: true
+      removeStyleLinkTypeAttributes: true
+      useShortDoctype: true
+      minifyJS: true
+      minifyCSS: true
+    ))
     .pipe(gulp.dest("#{dir.dist}/#{dir.tpl}"))
 )
 

@@ -28,4 +28,5 @@ utils =
       result[attr] = object[attr]
     )
     result
+  timehash: -> Date.now().toString(36)
 module.exports = extend(utils, util)
