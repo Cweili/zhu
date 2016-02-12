@@ -7,6 +7,21 @@ article
 utils = require('../utils')
 http = require('../utils/http')
 
+prism = require('prismjs/components/prism-core')
+require('prismjs/components/prism-markup')
+require('prismjs/components/prism-css')
+require('prismjs/components/prism-clike')
+require('prismjs/components/prism-javascript')
+require('prismjs/components/prism-c')
+require('prismjs/components/prism-cpp')
+require('prismjs/components/prism-csharp')
+require('prismjs/components/prism-coffeescript')
+require('prismjs/components/prism-jade')
+require('prismjs/components/prism-json')
+require('prismjs/components/prism-python')
+require('prismjs/components/prism-stylus')
+require('prismjs/plugins/line-numbers/prism-line-numbers')
+
 load = (vm, section) ->
   vm.content = ''
   chapter = section.split('/')
@@ -22,6 +37,7 @@ load = (vm, section) ->
       else
         "#{img}#{$1}#{$2}>"
     )
+    utils.nextTick(prism.highlightAll)
   )
 
 exports.props = [
@@ -42,6 +58,9 @@ exports.ready = ->
 @import "../styles/variables"
 @import "../styles/mixins"
 
+@import "../../node_modules/prismjs/themes/prism"
+@import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
+
 .content
   padding: $grid-gutter-width
   @media (min-width: $grid-float-breakpoint)
@@ -57,4 +76,8 @@ exports.ready = ->
       width: 100%
       transform: scale3d(.9, .9, .9)
       opacity: 0
+  .page-header
+    margin-top: 0
+  pre.line-numbers
+    padding-left: 3.8em
 </style>
