@@ -1,7 +1,7 @@
 <template lang="jade">
 div
   summary(:summary="summary")
-  content#zhu.container-fluid
+  content.clearfix
 </template>
 
 <script lang="coffee">
@@ -28,9 +28,4 @@ exports.ready = ->
 
 <style lang="stylus">
 @import "styles/index"
-
-#zhu
-  @media (min-width: $grid-float-breakpoint)
-    padding-left: ($summary-width + $grid-gutter-width)
-    padding-right: $grid-gutter-width
 </style>

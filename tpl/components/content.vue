@@ -1,25 +1,20 @@
 <template lang="jade">
-.content
-  h1 {{title}}
-  div {{{content}}}
+article
+  .content(v-if="content" transition="v") {{{content}}}
 </template>
 
 <script lang="coffee">
 http = require('../utils/http')
 
 load = (vm, section) ->
-  http("book/#{section}.html?#{window.v}").get((content) ->
-    vm.content = content
-    vm.title = window.title
-  )
+  vm.content = ''
+  http("book/#{section}.html?#{window.v}").get((content) -> vm.content = content)
 
 exports.data = ->
   content: ''
-  title: ''
 
 exports.ready = ->
   @$on('routeChange', (section) =>
-    console.info(1)
     if section then load(@, section) else @$router.go('/README')
   )
 </script>
@@ -29,6 +24,9 @@ exports.ready = ->
 @import "../styles/mixins"
 
 .content
+  padding: $grid-gutter-width
+  @media (min-width: $grid-float-breakpoint)
+    padding-left: ($grid-gutter-width + $summary-width)
   &.v
     &-transition
       transition: all .3s

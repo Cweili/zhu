@@ -14,7 +14,6 @@ app = new Vue
 
 router.on(
   '/(\\S*)': (path) ->
-    console.info(2)
     app.$broadcast('routeChange', path)
 )
 
