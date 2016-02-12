@@ -1,4 +1,4 @@
-![zhu](http://t12.baidu.com/it/u=163935389,2982383263&fm=58)
+![zhu](zhu.png)
 
 # Zhu
 
