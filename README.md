@@ -1,6 +1,6 @@
 # Zhu
 
-![zhu](http://git.oschina.net/Cweili/zhu/raw/master/zhu.png)
+[![zhu](http://git.oschina.net/Cweili/zhu/raw/master/zhu.png)](http://www.zdic.net/z/22/js/8457.htm)
 
 Release your Gitbook to HTMLs.
 
@@ -20,6 +20,6 @@ Tasks can be executed by running
 zhu <task>
 ```
 
-### Tasks
+## Tasks
 
-* `build` Build your Gitbook
+* `build` - Build your Gitbook
