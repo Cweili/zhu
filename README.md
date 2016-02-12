@@ -12,10 +12,14 @@ Release your Gitbook to HTMLs.
 npm install -g zhu
 ```
 
-## Useage
+## Usage
 
-### Build your Gitbook
+Tasks can be executed by running
 
 ```
-zhu build
+zhu <task>
 ```
+
+### Tasks
+
+* `build` Build your Gitbook
