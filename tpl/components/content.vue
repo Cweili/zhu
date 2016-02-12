@@ -6,21 +6,7 @@ article
 <script lang="coffee">
 utils = require('../utils')
 http = require('../utils/http')
-
-prism = require('prismjs/components/prism-core')
-require('prismjs/components/prism-markup')
-require('prismjs/components/prism-css')
-require('prismjs/components/prism-clike')
-require('prismjs/components/prism-javascript')
-require('prismjs/components/prism-c')
-require('prismjs/components/prism-cpp')
-require('prismjs/components/prism-csharp')
-require('prismjs/components/prism-coffeescript')
-require('prismjs/components/prism-jade')
-require('prismjs/components/prism-json')
-require('prismjs/components/prism-python')
-require('prismjs/components/prism-stylus')
-require('prismjs/plugins/line-numbers/prism-line-numbers')
+syntaxHighlight = require('../utils/syntax-highlight')
 
 load = (vm, section) ->
   vm.content = ''
@@ -37,7 +23,7 @@ load = (vm, section) ->
       else
         "#{img}#{$1}#{$2}>"
     )
-    utils.nextTick(prism.highlightAll)
+    syntaxHighlight()
   )
 
 exports.props = [
@@ -63,8 +49,10 @@ exports.ready = ->
 
 .content
   padding: $grid-gutter-width
+
   @media (min-width: $grid-float-breakpoint)
     padding-left: ($grid-gutter-width + $summary-width)
+
   &.v
     &-transition
       transition: all .3s
@@ -76,8 +64,12 @@ exports.ready = ->
       width: 100%
       transform: scale3d(.9, .9, .9)
       opacity: 0
+
   .page-header
     margin-top: 0
+
   pre.line-numbers
     padding-left: 3.8em
+  .line-numbers-rows
+    border-color: $pre-border-color
 </style>

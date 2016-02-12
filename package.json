@@ -1,6 +1,6 @@
 {
   "name": "zhu",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Release your Gitbook to HTMLs",
   "keywords": [
     "gitbook",
@@ -23,7 +23,7 @@
     "type": "git",
     "url": "https://git.oschina.net/Cweili/zhu.git"
   },
-  "author": "Evan You",
+  "author": "Cweili",
   "license": "MIT",
   "bugs": {
     "url": "http://git.oschina.net/Cweili/zhu/issues"
