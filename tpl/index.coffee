@@ -1,25 +1,21 @@
 Vue = require('vue')
-Router = require('vue-router')
 
 App = require('./app')
-Section = require('./views/section')
+router = require('./utils/router')
 
 Vue.config.debug = true
 Vue.config.silent = !Vue.config.debug
 
-# 注册路由插件
-Vue.use(Router)
+Vue.use(router)
 
-router = new Router(
-  linkActiveClass: 'active'
+app = new Vue
+  el: 'body'
+  components: app: App
+
+router.on(
+  '/(\\S*)': (path) ->
+    console.info(2)
+    app.$broadcast('routeChange', path)
 )
 
-router.map
-  '/':
-    component: Section
-  '/*section':
-    component: Section
-
-router.beforeEach -> window.scrollTo(0, 0)
-
-router.start(App, '#app')
+router.before(-> window.scrollTo(0, 0))

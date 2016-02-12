@@ -1,20 +1,20 @@
 <template lang="jade">
 .summary
-  ul(v-if!="summary && summary.sections" v-for="s in summary.sections")
-    li(v-if="s.link")
-      a(v-link="'/' + s.link") {{s.title}}
-    li(v-if="s.sections")
-      ul(v-for="s in s.sections")
-        li(v-if="s.link")
-          a(v-link="'/' + s.link") {{s.title}}
-        li(v-if="s.sections")
-          ul(v-for="s in s.sections")
-            li(v-if="s.link")
-              a(v-link="'/' + s.link") {{s.title}}
-            li(v-if="s.sections")
-              ul(v-for="s in s.sections")
-                li(v-if="s.link")
-                  a(v-link="'/' + s.link") {{s.title}}
+  ul(v-if!="summary && summary.list" v-for="a in summary.list")
+    li(v-if="a.link")
+      a(v-href="'/' + a.link") {{a.title}}
+    li(v-if="a.list")
+      ul(v-for="a in a.list")
+        li(v-if="a.link")
+          a(v-href="'/' + a.link") {{a.title}}
+        li(v-if="a.list")
+          ul(v-for="a in a.list")
+            li(v-if="a.link")
+              a(v-href="'/' + a.link") {{a.title}}
+            li(v-if="a.list")
+              ul(v-for="a in a.list")
+                li(v-if="a.link")
+                  a(v-href="'/' + a.link") {{a.title}}
 </template>
 
 <script lang="coffee">

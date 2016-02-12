@@ -1,6 +1,6 @@
-Utils = require('./')
-noop = Utils.noop
-isObject = Utils.isObject
+utils = require('./')
+noop = utils.noop
+isObject = utils.isObject
 methods = [
   'get'
   'post'
@@ -26,7 +26,7 @@ ajax = (method, url, data, options, onSuccess, onError) ->
         last
         noop
       ]).reduce((current, next) ->
-        if current && current(parseJson(xhr.responseText), xhr, options) then next else false
+        if current && current(parseJson(xhr.responseText), xhr, options) != false then next else false
       )
 
   xhr.open(method, url, true)
@@ -65,7 +65,7 @@ http = module.exports = (url) ->
         last
         noop
       ]).reduce((current, next) ->
-        if current && current(requestUrl, data, method, options, onSuccess, onFailed) then next else false
+        if current && current(requestUrl, data, method, options, onSuccess, onFailed) != false then next else false
       )
   )
   fns
