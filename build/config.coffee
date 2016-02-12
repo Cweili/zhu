@@ -10,7 +10,8 @@ exports.webpack =
   devPort: 8000
 
 exports.$ =
-  htmlmin: require('gulp-minify-html')
+  del: require('del')
+  htmlmin: require('gulp-htmlmin')
   replace: require('gulp-replace')
   util: require('gulp-util')
   webpack: require('webpack')

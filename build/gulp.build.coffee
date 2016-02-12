@@ -10,7 +10,13 @@ gulp.task('build', [
   'lib'
 ])
 
-gulp.task('webpack:build', (done) ->
+gulp.task('del', ->
+  $.del([
+    '${dir.dist}'
+  ])
+)
+
+gulp.task('webpack:build', ['del'], (done) ->
   $.webpack(require('./webpack.production'), (err, stats) ->
     return done(err) if err
     $.util.log('[webpack]', stats.toString(colors: true))
@@ -18,7 +24,7 @@ gulp.task('webpack:build', (done) ->
   )
 )
 
-gulp.task('html', ->
+gulp.task('html', ['del'], ->
   gulp.src("#{dir.tpl}/*.html")
     .pipe($.replace('@@build.name', config.pkg.name))
     .pipe($.replace('@@build.version', config.pkg.version))
@@ -30,7 +36,12 @@ gulp.task('html', ->
     .pipe(gulp.dest("#{dir.dist}/#{dir.tpl}"))
 )
 
-gulp.task('lib', ->
-  gulp.src("{#{dir.bin},#{dir.lib}}/**/*")
+gulp.task('lib', ['del'], ->
+  gulp.src([
+    "{#{dir.bin},#{dir.lib}}/**/*"
+    "package.json"
+    "README.md"
+    "LICENSE"
+  ])
     .pipe(gulp.dest(dir.dist))
 )
