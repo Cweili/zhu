@@ -27,8 +27,7 @@
     "gulp-marked": "^1.0.0",
     "gulp-minify-html": "^1.0.5",
     "gulp-replace": "^0.5.4",
-    "marked": "^0.3.5",
-    "minimist": "^1.2.0"
+    "marked": "^0.3.5"
   },
   "devDependencies": {
     "bootstrap-styl": "^5.0.5",
@@ -53,6 +52,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "engines": {
-    "node": ">= 0.9"
+    "node": ">= 0.12.0"
   }
 }
