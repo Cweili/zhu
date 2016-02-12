@@ -59,13 +59,27 @@ http = module.exports = (url) ->
       method = method.toUpperCase()
       requestUrl = transformUrl(url, data)
 
-      last = -> ajax(method, requestUrl, data, options, onSuccess, onFailed)
+      last = -> ajax(
+        method
+        requestUrl
+        data
+        options
+        onSuccess
+        onFailed
+      )
 
       befores.concat([
         last
         noop
       ]).reduce((current, next) ->
-        if current && current(requestUrl, data, method, options, onSuccess, onFailed) != false then next else false
+        if current && current(
+          requestUrl
+          data
+          method
+          options
+          onSuccess
+          onFailed
+        ) != false then next else false
       )
   )
   fns

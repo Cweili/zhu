@@ -1,6 +1,7 @@
 # Temporary
 .tmp
 *.tmp
+tpl/book
 
 # Logs
 logs

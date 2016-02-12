@@ -1,23 +1,23 @@
 {
   "name": "zhu",
-  "version": "1.0.0",
-  "description": "HN clone with Vue.js using HN API",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Release your gitbook to HTMLs",
+  "main": "bin/zhu.js",
   "scripts": {
     "start": "gulp dev",
-    "dev": "webpack-dev-server --inline --hot",
-    "build": ""
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yyx990803/vue-hackernews.git"
+    "url": "https://git.oschina.net/Cweili/zhu.git"
   },
   "author": "Evan You",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yyx990803/vue-hackernews/issues"
+    "url": "http://git.oschina.net/Cweili/zhu/issues"
   },
-  "homepage": "https://github.com/yyx990803/vue-hackernews",
+  "homepage": "http://git.oschina.net/Cweili/zhu",
   "bin": {
     "shu": "./bin/shu.js"
   },
@@ -37,6 +37,7 @@
     "css-loader": "^0.21.0",
     "file-loader": "^0.8.5",
     "font-awesome-stylus": "^4.5.0",
+    "gulp-util": "^3.0.7",
     "jade": "^1.11.0",
     "jade-loader": "^0.8.0",
     "nib": "^1.1.0",

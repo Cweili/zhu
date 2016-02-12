@@ -9,7 +9,7 @@ module.exports =
     "./#{dir.tpl}/index.coffee"
   ]
   output:
-    path: path.resolve(__dirname, "#{dir.dist}/#{dir.tpl}")
+    path: path.resolve(__dirname, "../#{dir.dist}/#{dir.tpl}")
     publicPath: '/'
   module:
     loaders: [

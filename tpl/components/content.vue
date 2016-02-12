@@ -14,7 +14,7 @@ exports.data = ->
   content: ''
 
 exports.ready = ->
-  @$on('routeChange', (section) =>
+  @$on('routeChange', ({0: section}) =>
     if section then load(@, section) else @$router.go('/README')
   )
 </script>
