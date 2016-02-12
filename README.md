@@ -1,4 +1,4 @@
-![zhu](zhu.png)
+![zhu](http://git.oschina.net/Cweili/zhu/raw/master/zhu.png)
 
 # Zhu
 
