@@ -22,4 +22,7 @@ zhu <task>
 
 ## Tasks
 
+* `server` - Start a livereload server on `http://localhost:8000`
 * `build` - Build your Gitbook
+
+Default task is `server`, so you can just run `zhu`.
