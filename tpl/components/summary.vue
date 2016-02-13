@@ -9,12 +9,12 @@
 -   }
 - }
 
-.summary
-  .header
+aside.summary
+  header.header
     h1.title
       button.toggle(type="button" @focus="toggle = true" @blur="toggle = false")
       | {{summary.title}}
-  .menu(:class="{off: !toggle}")
+  nav.menu(:class="{off: !toggle}")
     ul.chapter(v-if!="summary && summary.list" v-for="a in summary.list")
       | !{list(5)}
 </template>

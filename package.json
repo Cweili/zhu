@@ -1,6 +1,6 @@
 {
   "name": "zhu",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Release your Gitbook to HTMLs",
   "keywords": [
     "gitbook",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.oschina.net/Cweili/zhu.git"
+    "url": "https://github.com/Cweili/zhu.git"
   },
   "author": "Cweili",
   "license": "MIT",
   "bugs": {
-    "url": "http://git.oschina.net/Cweili/zhu/issues"
+    "url": "https://github.com/Cweili/zhu/issues"
   },
-  "homepage": "http://git.oschina.net/Cweili/zhu",
+  "homepage": "https://github.com/Cweili/zhu",
   "bin": {
     "zhu": "./bin/zhu.js"
   },
