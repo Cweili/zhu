@@ -8,6 +8,7 @@ gulp.task('build', [
   'webpack:build'
   'html'
   'lib'
+  'copy'
 ])
 
 gulp.task('del', ->
@@ -47,8 +48,15 @@ gulp.task('html', ['del'], ->
 )
 
 gulp.task('lib', ['del'], ->
+  gulp.src("#{dir.lib}/**/*.coffee")
+    .pipe($.replace(/^(.)/, '"use strict"\n$1'))
+    .pipe($.coffee(bare: true)).on('error', $.util.log)
+    .pipe(gulp.dest("#{dir.dist}/#{dir.lib}"))
+)
+
+gulp.task('copy', ['del'], ->
   gulp.src([
-    "{#{dir.bin},#{dir.lib}}/**/*"
+    "#{dir.bin}/**/*"
     "package.json"
     "README.md"
     "LICENSE"

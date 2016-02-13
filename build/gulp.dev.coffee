@@ -2,21 +2,31 @@ gulp = require('gulp')
 
 config = require('./config')
 $ = config.$
+dir = config.dir
 
 gulp.task('dev', [
-  'webpack:dev'
+  'connect'
 ])
 
-gulp.task('webpack:dev', (done) ->
+gulp.task('connect', ->
   webpackConfig = require('./webpack.development')
   compiler = $.webpack(webpackConfig)
-  server = new $.webpackDevServer(compiler,
-    contentBase: config.dir.tpl
-    hot: true
-    historyApiFallback: true
-    quiet: false
-    noInfo: false
-    stats: colors: true
+  $.connect.server(
+    port: 8000
+    root: dir.tpl
+    middleware: ->
+      [
+        $.webpackDevMiddleware(compiler,
+          noInfo: false
+          quiet: false
+          lazy: false
+          stats: colors: true
+        )
+        $.webpackHotMiddleware(compiler,
+          log: $.util.log
+          path: '/__webpack_hmr'
+          heartbeat: 10 * 1000
+        )
+      ]
   )
-  server.listen(config.webpack.devPort, 'localhost', done)
 )

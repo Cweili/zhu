@@ -5,8 +5,8 @@ config = require('./config')
 webpackConfig = require('./webpack.base')
 
 webpackConfig.entry = webpackConfig.entry.concat([
-  "webpack-dev-server/client?http://localhost:#{config.webpack.devPort}"
   'webpack/hot/dev-server'
+  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
 ])
 webpackConfig.output.filename = 'app.js'
 

@@ -10,11 +10,14 @@ exports.webpack =
   devPort: 8000
 
 exports.$ =
+  coffee: require('gulp-coffee')
+  connect: require('gulp-connect')
   del: require('del')
   htmlmin: require('gulp-htmlmin')
   replace: require('gulp-replace')
   util: require('gulp-util')
   webpack: require('webpack')
-  webpackDevServer: require('webpack-dev-server')
+  webpackDevMiddleware: require('webpack-dev-middleware')
+  webpackHotMiddleware: require('webpack-hot-middleware')
 
 exports.pkg = pkg
