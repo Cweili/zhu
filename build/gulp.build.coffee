@@ -4,10 +4,19 @@ config = require('./config')
 $ = config.$
 dir = config.dir
 
-gulp.task('build', [
+gulp.task('build', (done) ->
+  $.runSequence(
+    'del'
+    'build:concurrent'
+    done
+  )
+)
+
+gulp.task('build:concurrent', [
   'webpack:build'
   'html'
   'lib'
+  'bin'
   'copy'
 ])
 
@@ -17,7 +26,7 @@ gulp.task('del', ->
   ])
 )
 
-gulp.task('webpack:build', ['del'], (done) ->
+gulp.task('webpack:build', (done) ->
   $.webpack(require('./webpack.production'), (err, stats) ->
     return done(err) if err
     $.util.log('[webpack]', stats.toString(colors: true))
@@ -25,7 +34,7 @@ gulp.task('webpack:build', ['del'], (done) ->
   )
 )
 
-gulp.task('html', ['del'], ->
+gulp.task('html', ->
   gulp.src("#{dir.tpl}/*.html")
     .pipe($.replace('@@build.name', config.pkg.name))
     .pipe($.replace('@@build.version', config.pkg.version))
@@ -47,19 +56,23 @@ gulp.task('html', ['del'], ->
     .pipe(gulp.dest("#{dir.dist}/#{dir.tpl}"))
 )
 
-gulp.task('lib', ['del'], ->
+gulp.task('lib', ->
   gulp.src("#{dir.lib}/**/*.coffee")
     .pipe($.replace(/^(.)/, '"use strict"\n$1'))
     .pipe($.coffee(bare: true)).on('error', $.util.log)
     .pipe(gulp.dest("#{dir.dist}/#{dir.lib}"))
 )
 
-gulp.task('copy', ['del'], ->
+gulp.task('bin', ->
+  gulp.src("#{dir.bin}/**/*")
+    .pipe(gulp.dest("#{dir.dist}/#{dir.bin}"))
+)
+
+gulp.task('copy', ->
   gulp.src([
-    "#{dir.bin}/**/*"
-    "package.json"
-    "README.md"
-    "LICENSE"
+    'package.json'
+    'README.md'
+    'LICENSE'
   ])
     .pipe(gulp.dest(dir.dist))
 )

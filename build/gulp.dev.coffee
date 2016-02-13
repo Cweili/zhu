@@ -14,6 +14,8 @@ gulp.task('connect', ->
   $.connect.server(
     port: 8000
     root: dir.tpl
+    fallback: 'index.html'
+    debug: true
     middleware: ->
       [
         $.webpackDevMiddleware(compiler,

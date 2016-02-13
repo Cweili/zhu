@@ -15,6 +15,7 @@ exports.$ =
   del: require('del')
   htmlmin: require('gulp-htmlmin')
   replace: require('gulp-replace')
+  runSequence: require('run-sequence')
   util: require('gulp-util')
   webpack: require('webpack')
   webpackDevMiddleware: require('webpack-dev-middleware')
