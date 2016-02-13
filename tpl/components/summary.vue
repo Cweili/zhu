@@ -106,14 +106,14 @@ exports.ready = ->
     &:hover,
     &:focus,
     &.focus
-      color $btn-default-color
-      text-decoration none
+      color: $btn-default-color
+      text-decoration: none
 
     &:active,
     &.active
-      outline 0
-      background-image none
-      box-shadow inset 0 3px 5px rgba(0, 0, 0, .125)
+      outline: 0
+      background-image: none
+      box-shadow: inset 0 3px 5px rgba($black, .125)
 
     &:after
       content: ""

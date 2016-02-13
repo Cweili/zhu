@@ -1,6 +1,9 @@
 Renderer = require('marked').Renderer
-summaryRender = new Renderer()
-articleRender = new Renderer()
+
+###
+# articleRender
+###
+exports.articleRender = articleRender = new Renderer()
 
 articleRender.heading = (text, level) ->
   (if level < 2 then '<div class="page-header">' else '') +
@@ -22,11 +25,16 @@ articleRender.link = (href, title, text) ->
   (if title then ' title="' + title + '"' else '') +
   ">#{text}</a>"
 
+###
+# summaryRender
+###
+exports.summaryRender = summaryRender = new Renderer()
+
 summaryRender.heading = -> ''
 
-exports.articleRender = articleRender
-exports.summaryRender = summaryRender
-
+###
+# summaryParser
+###
 summaryParser = (node, s) ->
   list
   if s.a

@@ -1,10 +1,11 @@
 {
   "name": "zhu",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Release your Gitbook to HTMLs",
   "keywords": [
     "gitbook",
     "markdown",
+    "marked",
     "md",
     "build",
     "html",
@@ -13,11 +14,11 @@
     "vue.js",
     "template"
   ],
-  "main": "bin/zhu.js",
   "scripts": {
-    "start": "gulp dev",
+    "start": "npm run dev",
     "dev": "gulp dev",
-    "build": "gulp build"
+    "build": "gulp build",
+    "publish": "npm run build && cd dist && npm publish"
   },
   "repository": {
     "type": "git",
@@ -25,10 +26,11 @@
   },
   "author": "Cweili",
   "license": "MIT",
+  "homepage": "https://github.com/Cweili/zhu",
   "bugs": {
     "url": "https://github.com/Cweili/zhu/issues"
   },
-  "homepage": "https://github.com/Cweili/zhu",
+  "main": "bin/zhu.js",
   "bin": {
     "zhu": "./bin/zhu.js"
   },
@@ -40,6 +42,7 @@
     "gulp-htmlmin": "^1.3.0",
     "gulp-marked": "^1.0.0",
     "gulp-replace": "^0.5.4",
+    "gulp-util": "^3.0.7",
     "marked": "^0.3.5",
     "run-sequence": "^1.1.5"
   },
@@ -51,7 +54,6 @@
     "file-loader": "^0.8.5",
     "font-awesome-stylus": "^4.5.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-util": "^3.0.7",
     "jade": "^1.11.0",
     "jade-loader": "^0.8.0",
     "nib": "^1.1.0",

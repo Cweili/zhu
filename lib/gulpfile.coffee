@@ -3,19 +3,19 @@ path = require('path')
 
 gulp = require('gulp')
 runSequence = require('run-sequence')
+convert = require('gulp-convert')
+connect = require('gulp-connect')
 del = require('del')
 marked = require('gulp-marked')
 htmlmin = require('gulp-htmlmin')
 replace = require('gulp-replace')
-convert = require('gulp-convert')
-connect = require('gulp-connect')
+gutil = require('gulp-util')
 
 parser = require('./parser')
 
 dist = '_book'
 book = 'book'
 tpl = 'tpl'
-cwd = process.cwd()
 
 gulp.task('default', ['server'])
 
@@ -28,7 +28,9 @@ gulp.task('build', (done) ->
   runSequence(
     'del'
     'build:concurrent'
-    done
+    ->
+      gutil.log("Finished build in '#{dist}'")
+      done()
   )
 )
 
@@ -53,7 +55,7 @@ gulp.task('markdown', (done) ->
 )
 
 gulp.task('article', ->
-  return gulp.src([
+  gulp.src([
     '*/*.{md,markdown}'
     'README.{md,markdown}'
   ])
@@ -85,7 +87,7 @@ gulp.task('asset', ->
 )
 
 gulp.task('summary', ->
-  return gulp.src('SUMMARY.{md,markdown}')
+  gulp.src('SUMMARY.{md,markdown}')
     .pipe(marked(
       renderer: parser.summaryRender
     ))
@@ -98,11 +100,11 @@ gulp.task('summary', ->
       try
         summary = parser.summary(JSON.parse($0))
       catch e
-        console.error(e, e)
+        gutil.log("Summary parse error #{e}")
         summary = {}
 
       summary.v = Date.now().toString(36)
-      summary.title = cwd.split(path.sep).pop()
+      summary.title = process.cwd().split(path.sep).pop()
       JSON.stringify(summary)
     ))
     .pipe(gulp.dest("#{dist}/#{book}"))
