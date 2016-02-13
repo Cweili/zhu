@@ -120,7 +120,6 @@ gulp.task('connect', ['build'], ->
     port: 8000
     root: dist
     livereload: port: 35731
-    fallback: dist+'/index.html'
     debug: true
   )
 )
