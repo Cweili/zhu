@@ -15,7 +15,6 @@ parser = require('./parser')
 dist = '_book'
 book = 'book'
 tpl = 'tpl'
-version = Date.now().toString(36)
 cwd = process.cwd()
 
 gulp.task('default', ['server'])
@@ -102,7 +101,7 @@ gulp.task('summary', ->
         console.error(e, e)
         summary = {}
 
-      summary.v = version
+      summary.v = Date.now().toString(36)
       summary.title = cwd.split(path.sep).pop()
       JSON.stringify(summary)
     ))
