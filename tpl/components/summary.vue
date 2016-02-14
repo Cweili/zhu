@@ -1,22 +1,26 @@
 <template lang="jade">
-- function list(level) {
+- function list(level, total) {
 -   if (level) {
       li(v-if="a.link")
-        a(v-href="'/' + a.link", :class="{active: path == a.link}") {{a.title}}
+        a.text-ellipsis(
+          class="level-" + (total - level)
+          v-href="'/' + a.link",
+          :class="{active: path == a.link}"
+        ) {{a.title}}
       li(v-if="a.list")
         ul(v-for="a in a.list")
-          | !{list(--level)}
+          | !{list(--level, total)}
 -   }
 - }
 
 aside.summary
   header.header
-    h1.title
+    h2.title.text-ellipsis
       button.toggle(type="button" @focus="toggle = true" @blur="toggle = false")
       | {{summary.title}}
   nav.menu(:class="{off: !toggle}")
     ul.chapter(v-if!="summary && summary.list" v-for="a in summary.list")
-      | !{list(5)}
+      | !{list(5, 5)}
 </template>
 
 <script lang="coffee">
@@ -39,10 +43,11 @@ exports.ready = ->
 .summary
   .header
     fixed: top 0 left 0
-    height: $navbar-height
+    padding: $line-height-computed 0
+    size: $summary-width ($navbar-height + $line-height-computed * 2)
 
   .menu
-    fixed: top $navbar-height bottom 0 left 0
+    fixed: top ($navbar-height + $line-height-computed * 2) bottom 0 left 0
     width: $summary-width
     background: $body-bg
     overflow: hidden
@@ -51,7 +56,7 @@ exports.ready = ->
     ul
       list-style: none
       margin: 0
-      padding-left: $grid-gutter-width
+      padding: 0
       font-size: $font-size-h6
       &.chapter
         font-size: $font-size-h4
@@ -59,27 +64,29 @@ exports.ready = ->
         display: block
         position: relative
         padding: $padding-base-vertical 0
+        background: $body-bg
         color: $text-color
         text-decoration: none
         transition: all .3s
         &:after
           content: ""
-          absolute: top 0 bottom 0 left ($grid-gutter-width * -5) right 0
-          transform: scaleX(0)
-          transform-origin: 0 50%
+          absolute: top 0 bottom 0 left 0
+          border: 2px solid $component-active-bg
+          transform: scaleY(0)
           transition: all .3s
-          z-index: -1
         &:focus
         &:active
         &:hover
         &.active
-          color: $component-active-color
-          &:after
-            background: ($component-active-bg + 50%)
-            transform: scaleX(1)
+          background: $summary-active
         &.active
+          color: $state-primary-text
           &:after
-            background: $component-active-bg
+            transform: scaleY(1)
+
+        for $level in 0..4
+          &.level-{$level}
+            padding-left: ($grid-gutter-width * ($level + 1))
 
   .toggle
     $toggle-height = $font-size-h1
@@ -128,8 +135,11 @@ exports.ready = ->
   @media (max-width: $grid-float-breakpoint-max)
     .header
       position: static
+      padding: 0
+      size: 100% $navbar-height
 
     .menu
+      top: $navbar-height
       width: 100%
       transition: all .3s
       &.off

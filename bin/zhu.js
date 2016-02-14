@@ -10,6 +10,6 @@ argv.push('--cwd')
 argv.push(cwd)
 
 argv.push('--gulpfile')
-argv.push(path.resolve(__dirname, '../lib/gulpfile.js'))
+argv.push(path.resolve(__dirname, '../lib/index.js'))
 
 require('gulp/bin/gulp')

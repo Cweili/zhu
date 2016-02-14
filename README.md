@@ -20,9 +20,11 @@ Tasks can be executed by running
 zhu <task>
 ```
 
+For example `zhu server`.
+
 ## Tasks
 
-* `server` - Start a livereload server on `http://localhost:8000`
-* `build` - Build your Gitbook
+* `server`, `s` - Start a livereload server on `http://localhost:8000`.
+* `build`, `b` - Build your Gitbook.
 
 Default task is `server`, so you can just run `zhu`.
