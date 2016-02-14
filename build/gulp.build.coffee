@@ -22,7 +22,7 @@ gulp.task('build:concurrent', [
 
 gulp.task('del', ->
   $.del([
-    '${dir.dist}'
+    dir.dist
   ])
 )
 
