@@ -1,6 +1,6 @@
 Vue = require('vue')
 
-App = require('./app')
+Zhu = require('./zhu')
 router = require('./utils/router')
 
 Vue.config.debug = true
@@ -10,7 +10,7 @@ Vue.use(router)
 
 app = new Vue
   el: 'body'
-  components: app: App
+  components: zhu: Zhu
 
 router.on(
   '/(\\S*)': (path) ->

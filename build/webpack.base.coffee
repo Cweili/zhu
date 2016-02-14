@@ -9,6 +9,7 @@ module.exports =
     "./#{dir.tpl}/index.coffee"
   ]
   output:
+    filename: "#{config.pkg.name}.js"
     path: path.resolve(__dirname, "../#{dir.dist}/#{dir.tpl}")
     publicPath: '/'
   module:

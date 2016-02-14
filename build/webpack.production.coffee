@@ -4,7 +4,6 @@ config = require('./config')
 
 webpackConfig = require('./webpack.base')
 
-webpackConfig.output.filename = 'app.js'
 webpackConfig.output.chunkFilename = '[id].js?[chunkhash]'
 
 webpackConfig.plugins = (webpackConfig.plugins || []).concat([

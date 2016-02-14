@@ -8,7 +8,6 @@ webpackConfig.entry = webpackConfig.entry.concat([
   'webpack/hot/dev-server'
   'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
 ])
-webpackConfig.output.filename = 'app.js'
 
 webpackConfig.debug = true
 webpackConfig.devtool = 'source-map'
