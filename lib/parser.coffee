@@ -23,7 +23,7 @@ articleRender.table = (header, body) ->
 
 articleRender.link = (href, title, text) ->
   '<a href="' +
-  href.replace(/([^\:]+?)(\/?)([^\:]*?)\.(md|markdown)(#\S+?)?$/, '$1$2$3.html$5') +
+  href.replace(/([^\:]+?)(\/?)([^\:]*?)\.(md|markdown)(#\S+?)?$/, '#/$1$2$3$5') +
   '"' +
   (if title then ' title="' + title + '"' else '') +
   ">#{text}</a>"

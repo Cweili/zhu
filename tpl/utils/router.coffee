@@ -1,12 +1,14 @@
 utils = require('./')
 noop = utils.noop
 each = utils.each
+nextTick = utils.nextTick
 
 win = window
 HASH_CHAR = '#'
 
 _routes = []
 _params = []
+_hash = ''
 befores = []
 afters = []
 
@@ -16,6 +18,12 @@ currentPath = -> win.location.hash.substr(HASH_CHAR.length)
 go = (path) -> win.location.hash = HASH_CHAR + path
 onChange = ->
   path = currentPath()
+  hashIndex = path.lastIndexOf('#')
+  if hashIndex > -1
+    _hash = path.substr(hashIndex + 1)
+    path = path.substr(0, hashIndex)
+  else
+    _hash = ''
   each(_routes, (r) ->
     route = r.route
     if route.test(path)
@@ -24,6 +32,14 @@ onChange = ->
       fns.reduce((current, next) ->
         if current && current(_params) != false then next else false
       )
+
+      # 滚动到 hash 对应 id
+      if _hash
+        nextTick(-> setTimeout(->
+          if _hash
+            el = document.getElementById(_hash)
+            window.scrollTo(0, el.offsetTop - 20) if el
+        , 300))
       false
   )
 
@@ -44,6 +60,7 @@ router.install = (Vue) ->
   Vue.prototype.$router = go: go
   Object.defineProperties(Vue.prototype.$router,
     path: get: currentPath
+    hash: get: -> _hash
     params: get: -> _params
   )
 
