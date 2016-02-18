@@ -65,6 +65,13 @@ exports.ready = ->
       transform: scale3d(.9, .9, .9)
       opacity: 0
 
+  h2
+  h3
+  h4
+  h5
+  h6
+    margin-top: ($line-height-computed * 1.5)
+
   .page-header
     margin-top: 0
 
