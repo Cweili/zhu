@@ -6,8 +6,11 @@ Renderer = require('marked').Renderer
 exports.articleRender = articleRender = new Renderer()
 
 articleRender.heading = (text, level) ->
+  id = text?.replace(/[^A-Za-z0-9]/g, '-').replace(/\-+/g, '-').replace(/(^\-)|(\-$)/g, '')
   (if level < 2 then '<div class="page-header">' else '') +
-  "<h#{level}>#{text}</h#{level}>" +
+  "<h#{level}" +
+  (if id then " id=\"#{id}\"" else '') +
+  ">#{text}</h#{level}>" +
   (if level < 2 then '</div>' else '')
 
 articleRender.table = (header, body) ->
@@ -20,7 +23,7 @@ articleRender.table = (header, body) ->
 
 articleRender.link = (href, title, text) ->
   '<a href="' +
-  href.replace(/([^\:]+?)(\/?)([^\:]*?)\.(md|markdown)$/, '$1$2$3.html') +
+  href.replace(/([^\:]+?)(\/?)([^\:]*?)\.(md|markdown)(#\S+?)?$/, '$1$2$3.html$5') +
   '"' +
   (if title then ' title="' + title + '"' else '') +
   ">#{text}</a>"
