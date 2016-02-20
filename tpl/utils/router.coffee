@@ -38,8 +38,9 @@ onChange = ->
         nextTick(-> setTimeout(->
           if _hash
             el = document.getElementById(_hash)
-            window.scrollTo(0, el.offsetTop - 20) if el
+            win.scrollTo(0, el.offsetTop - 20) if el
         , 300))
+
       false
   )
 
@@ -57,14 +58,14 @@ router.on = (routes) ->
   onChange()
 
 router.install = (Vue) ->
-  Vue.prototype.$router = go: go
-  Object.defineProperties(Vue.prototype.$router,
+  $router = Vue.prototype.$router = go: go
+  Object.defineProperties($router,
     path: get: currentPath
     hash: get: -> _hash
     params: get: -> _params
   )
 
-  Vue.directive('href', update: (href) ->
+  Vue.directive('href', (href) ->
     @el.href = HASH_CHAR + href
   )
 

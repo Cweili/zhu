@@ -83,9 +83,9 @@ gulp.task('summary', ->
     .pipe($.replace(/[\S\s\r\n]*/m, ($0) ->
       summary
       try
-        summary = parser.summary(JSON.parse($0))
+        summary = if $0.replace(/\s/g, '') && $0 != 'null' then parser.summary(JSON.parse($0)) else {}
       catch e
-        gutil.log("Summary parse error #{e}")
+        $.util.log("Summary parse error #{e}")
         summary = {}
 
       summary.v = Date.now().toString(36)
