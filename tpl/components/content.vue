@@ -11,12 +11,14 @@ syntaxHighlight = require('../utils/syntax-highlight')
 
 load = (vm, section) ->
   vm.content = ''
-  http("#{vm.prefix}#{section}.html?#{vm.v || utils.timehash()}").get((content) ->
-    vm.content = parser(content, section, vm.prefix, vm.v)
-    syntaxHighlight()
-  , (text, xhr) ->
-    vm.content = "<h1>#{xhr.status}</h1>#{text}"
-  )
+  http("#{vm.prefix}#{section}.html?#{vm.v || utils.timehash()}")
+    .get(
+      (content) ->
+        vm.content = parser(content, section, vm.prefix, vm.v)
+        syntaxHighlight()
+      (text, xhr) ->
+        vm.content = "<h1>#{xhr.status}</h1>#{text}"
+    )
 
 exports.props = [
   'prefix'
