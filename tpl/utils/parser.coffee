@@ -1,14 +1,11 @@
-utils = require('./')
-toArray = utils.toArray
 HASH_CHAR = require('./router').HASH_CHAR
 
 linkParser = (content, chapter) ->
-  content.replace(/(<a href=)([^\s>]+)(.*?)(>)([\S\s]+?)(<\/a>)/g, ->
-    args = toArray(arguments)
-    href = args[2].replace(/^("?)(\.\.\/)?([^\:]+)$/, ($0, $1, $2, $3)->
+  content.replace(/(<a href=)([^\s>]+)(.*?)(<\/a>)/g, ($0, $1, $2, $3, $4)->
+    href = $2.replace(/^("?)(\.\.\/)?([^\:]+)$/, ($0, $1, $2, $3)->
       "#{$1}#{HASH_CHAR}/#{if $2 then '' else chapter}#{$3}"
     )
-    "#{args[1]}#{href}#{args[3..6].join('')}"
+    "#{$1}#{href}#{$3}#{$4}"
   )
 
 imgParser = (content, chapter, prefix, v) ->
