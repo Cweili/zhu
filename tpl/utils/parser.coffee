@@ -5,9 +5,8 @@ HASH_CHAR = require('./router').HASH_CHAR
 linkParser = (content, chapter) ->
   content.replace(/(<a href=)([^\s>]+)(.*?)(>)([\S\s]+?)(<\/a>)/g, ->
     args = toArray(arguments)
-    href = args[2].replace(/^("?)(\.\.\/)?([^\:]+)$/, ->
-      parts = toArray(arguments)
-      "#{HASH_CHAR}/#{if parts[2] then '' else chapter}#{parts[3]}"
+    href = args[2].replace(/^("?)(\.\.\/)?([^\:]+)$/, ($0, $1, $2, $3)->
+      "#{$1}#{HASH_CHAR}/#{if $2 then '' else chapter}#{$3}"
     )
     "#{args[1]}#{href}#{args[3..6].join('')}"
   )
