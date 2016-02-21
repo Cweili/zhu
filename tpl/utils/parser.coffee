@@ -5,15 +5,11 @@ HASH_CHAR = require('./router').HASH_CHAR
 linkParser = (content, chapter) ->
   content.replace(/(<a href=)([^\s>]+)(.*?)(>)([\S\s]+?)(<\/a>)/g, ->
     args = toArray(arguments)
-    console.info(args)
     href = args[2].replace(/^("?)(\.\.\/)?([^\:]+)$/, ->
       parts = toArray(arguments)
-      console.info(parts)
       "#{HASH_CHAR}/#{if parts[2] then '' else chapter}#{parts[3]}"
     )
-    out = "#{args[1]}#{href}#{args[3..6].join('')}"
-    console.info(out)
-    out
+    "#{args[1]}#{href}#{args[3..6].join('')}"
   )
 
 imgParser = (content, chapter, prefix, v) ->
