@@ -74,3 +74,5 @@ router.before = (before) ->
 
 router.after = (after) ->
   afters.push(after)
+
+router.HASH_CHAR = HASH_CHAR

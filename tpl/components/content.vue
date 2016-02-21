@@ -6,23 +6,13 @@ article
 <script lang="coffee">
 utils = require('../utils')
 http = require('../utils/http')
+parser = require('../utils/parser')
 syntaxHighlight = require('../utils/syntax-highlight')
 
 load = (vm, section) ->
   vm.content = ''
-  chapter = section.split('/')
-  chapter = if chapter.length > 1 then chapter[0] + '/' else ''
   http("#{vm.prefix}#{section}.html?#{vm.v || utils.timehash()}").get((content) ->
-    vm.content = content.replace(/<img src=(.+?)( alt=.+?)?>/g, ($0, $1, $2) ->
-      img = '<img class=img-responsive src='
-      v = "?#{vm.v}"
-      if $1.indexOf('//') < 0
-        "#{img}#{vm.prefix}#{chapter}#{$1}#{v}#{$2}>"
-      else if $1.indexOf('../') >= 0
-        "#{img}#{$1.substr(3)}#{v}#{$2}>"
-      else
-        "#{img}#{$1}#{$2}>"
-    )
+    vm.content = parser(content, section, vm.prefix, vm.v)
     syntaxHighlight()
   )
 

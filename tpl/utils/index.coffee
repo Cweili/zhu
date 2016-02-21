@@ -7,7 +7,7 @@ isArray = util.isArray
 utils =
   noop: ->
   clone: (collection) ->
-    if isArray(collection) then collection.slice(0) else extend({}, collection)
+    if isArray(collection) then collection[0..] else extend({}, collection)
   each: (collection, handler) ->
     if isArray(collection)
       for e, i in collection
@@ -23,7 +23,7 @@ utils =
   pick: (object, attrs) ->
     result = {}
     if !isArray(attrs)
-      attrs = toArray(arguments).slice(1)
+      attrs = toArray(arguments)[1..]
     utils.each(attrs, (attr) ->
       result[attr] = object[attr]
     )
