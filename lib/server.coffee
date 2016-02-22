@@ -20,7 +20,7 @@ gulp.task('connect', ['build'], ->
   )
 )
 
-gulp.task('watch', ->
+gulp.task('watch', ['build'], ->
   gulp.watch([
     '*/*.{md,markdown}'
     'README.{md,markdown}'
