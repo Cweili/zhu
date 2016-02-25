@@ -1,6 +1,6 @@
 Vue = require('vue')
 
-Zhu = require('./zhu')
+Zhu = require('./zhu.vue')
 router = require('./utils/router')
 
 Vue.config.debug = true
