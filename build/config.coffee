@@ -5,6 +5,7 @@ exports.dir =
   lib: 'lib'
   tpl: 'tpl'
   dist: 'dist'
+  tmp: '.tmp'
 
 exports.webpack =
   devPort: 8000
@@ -16,9 +17,8 @@ exports.$ =
   htmlmin: require('gulp-htmlmin')
   replace: require('gulp-replace')
   runSequence: require('run-sequence')
+  uglify: require('gulp-uglify')
   util: require('gulp-util')
-  webpack: require('webpack')
-  webpackDevMiddleware: require('webpack-dev-middleware')
-  webpackHotMiddleware: require('webpack-hot-middleware')
+  vue: require('./gulp.vue')
 
 exports.pkg = pkg

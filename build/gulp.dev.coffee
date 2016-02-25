@@ -10,20 +10,20 @@ gulp.task('dev', [
 
 gulp.task('connect', ->
   webpackConfig = require('./webpack.development')
-  compiler = $.webpack(webpackConfig)
+  compiler = require('webpack')(webpackConfig)
   $.connect.server(
     port: 8000
     root: dir.tpl
     debug: true
     middleware: ->
       [
-        $.webpackDevMiddleware(compiler,
+        require('webpack-dev-middleware')(compiler,
           noInfo: false
           quiet: false
           lazy: false
           stats: colors: true
         )
-        $.webpackHotMiddleware(compiler,
+        require('webpack-hot-middleware')(compiler,
           log: $.util.log
           path: '/__webpack_hmr'
           heartbeat: 10 * 1000

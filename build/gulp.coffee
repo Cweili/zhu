@@ -6,3 +6,7 @@ for file in fs.readdirSync(__dirname)
     require("./#{file}")
 
 gulp.task('default', ['dev'])
+
+gulp.task('rollup', ->
+  require('./rollup.base')
+)
