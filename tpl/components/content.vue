@@ -38,7 +38,7 @@ exports.ready = ->
 @import "../styles/variables"
 @import "../styles/mixins"
 
-@import "../../node_modules/prismjs/themes/prism"
+@import "../../node_modules/prismjs/themes/prism.css"
 @import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
 
 .content

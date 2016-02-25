@@ -13,8 +13,8 @@ gulp.task('build', (done) ->
 )
 
 gulp.task('build:concurrent', [
-  'webpack:build'
-  'html'
+  'tpl:script'
+  'tpl:html'
   'lib'
   'bin'
   'copy'
@@ -26,7 +26,7 @@ gulp.task('del', ->
   ])
 )
 
-gulp.task('webpack:build', (done) ->
+gulp.task('tpl:script', (done) ->
   $.webpack(require('./webpack.production'), (err, stats) ->
     return done(err) if err
     $.util.log('[webpack]', stats.toString(colors: true))
@@ -34,7 +34,7 @@ gulp.task('webpack:build', (done) ->
   )
 )
 
-gulp.task('html', ->
+gulp.task('tpl:html', ->
   gulp.src("#{dir.tpl}/*.html")
     .pipe($.replace('@@build.name', config.pkg.name))
     .pipe($.replace('@@build.version', config.pkg.version))
