@@ -16,7 +16,7 @@ gulp.task('tpl:rollup', ['tpl:bundle'], ->
     .pipe(gulp.dest("#{dir.dist}/#{dir.tpl}"))
 )
 
-gulp.task('tpl:rollup', [
+gulp.task('tpl:bundle', [
   'tpl:vue'
   'tpl:script'
 ], ->

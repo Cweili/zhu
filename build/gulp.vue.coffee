@@ -24,7 +24,7 @@ module.exports = (options) ->
         @emit('error', new PluginError(PLUGIN_NAME, err.message))
         return callback()
 
-      file.path = file.path + '.js'
+      file.path = gutil.replaceExtension(file.path, '.js')
       file.contents = new Buffer(result)
       callback(null, file)
     )
