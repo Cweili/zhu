@@ -6,6 +6,8 @@ Release your Gitbook to HTMLs.
 
 一个将你编著的 Gitbook 生成 HTML 的工具。
 
+[![npm](https://nodei.co/npm/zhu.png?downloads=true&stars=true)](https://www.npmjs.com/package/zhu)
+
 ## Install
 
 ```
