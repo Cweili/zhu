@@ -13,6 +13,7 @@
 #
 
 # source code
+*.vue text
 *.php text
 *.css text
 *.sass text
