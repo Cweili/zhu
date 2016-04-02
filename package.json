@@ -7,6 +7,8 @@
     "markdown",
     "marked",
     "md",
+    "compile",
+    "convert",
     "build",
     "html",
     "vue",
