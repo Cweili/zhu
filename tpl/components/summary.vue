@@ -16,7 +16,7 @@
 aside.summary
   header.header
     h2.title.text-ellipsis
-      button.toggle(type="button" @focus="toggle = true" @blur="toggle = false")
+      button.btn.toggle(type="button" @focus="toggle = true" @blur="toggle = false")
       | {{summary.title}}
   nav.menu(:class="{off: !toggle}")
     ul.chapter(v-if!="summary && summary.list" v-for="a in summary.list")
@@ -91,36 +91,8 @@ exports.ready = ->
   .toggle
     $toggle-height = $font-size-h1
     display: none
-    position: relative
     margin-right: 8px
     size: 48px $toggle-height
-    touch-action: manipulation
-    cursor: pointer
-    background-image: none // Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
-    border: 1px solid transparent
-    border-radius: $btn-border-radius-base
-    user-select: none
-
-    button-variant: $btn-default-color $btn-default-bg $btn-default-border
-
-    &,
-    &:active,
-    &.active
-      &:focus,
-      &.focus
-        tab-focus()
-
-    &:hover,
-    &:focus,
-    &.focus
-      color: $btn-default-color
-      text-decoration: none
-
-    &:active,
-    &.active
-      outline: 0
-      background-image: none
-      box-shadow: inset 0 3px 5px rgba($black, .125)
 
     &:after
       content: ""
