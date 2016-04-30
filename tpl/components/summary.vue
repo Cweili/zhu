@@ -32,8 +32,9 @@ exports.data = ->
   path: ''
   toggle: false
 
-exports.ready = ->
-  @$on('routeChange', (path) => @path = path)
+exports.events =
+  routeChange: ({0: path}) ->
+    @path = path
 </script>
 
 <style lang="stylus">

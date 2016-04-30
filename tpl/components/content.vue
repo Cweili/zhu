@@ -28,10 +28,9 @@ exports.props = [
 exports.data = ->
   content: ''
 
-exports.ready = ->
-  @$on('routeChange', ({0: section}) =>
+exports.events =
+  routeChange: ({0: section}) ->
     if section then load(@, section) else @$router.go('/README')
-  )
 </script>
 
 <style lang="stylus">
