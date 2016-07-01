@@ -62,3 +62,4 @@ module.exports =
         'ie 9',
         '> 1%'
       ]
+    html: conservativeCollapse: false
